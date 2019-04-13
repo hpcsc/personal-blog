@@ -1,0 +1,60 @@
+baseURL = "https://pnguyen.io"
+languageCode = "en-us"
+title = "David Nguyen's Personal Blog"
+theme = "dream-plus"
+
+paginate = 10
+enableRobotsTXT = true
+disqusShortname = "pnguyen"
+
+#Skip building these files
+ignoreFiles = ["content/cards/\\.*"]
+
+#Syntax highlighting
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+pygmentsOptions = "linenos=table"
+
+#Enable Hugo Emoji Conversion
+enableEmoji=true
+
+[params]
+	#Favicon for site
+	favicon = "images/favicon.ico"
+
+	#Set whether you're hosting "cards" or "post"
+	contentType = "posts"
+
+	siteStartYear = 2018
+
+	[params.author]
+		name = "David Nguyen"
+		description = "Just a regular developer who's passionate about crafting high quality software, a martial arts practitioner, a proud dad of two sons."
+		avatar = "https://www.gravatar.com/avatar/624eb530503fe6117f4b4b5ad3acf062"
+		motto = ""
+
+	[params.features]
+		#Enable Twitter Emoji
+		twitterEmoji = true
+		#Enable Table of Contents
+		toc = true
+		#Enable share card
+		shareCard = true
+		#Use custom CSS
+		customCSS = ["https://cdn.rawgit.com/UtkarshVerma/hugo-dream-plus/ae11561d/exampleSite/static/css/highlight.css"]
+
+	[params.background]
+		colorBG = true
+
+	#Tags settings
+	[params.tags]
+		enabled = false
+
+	#Categories settings
+	[params.categories]
+		enabled = true
+
+[social]
+	email = "hpcsc@users.noreply.github.com"
+	github = "hpcsc"
+	linkedin = "nguyenhungphuong"
