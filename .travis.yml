@@ -6,6 +6,8 @@ os:
 go:
 - "1.9.x"
 
+install: make install_hugo
+
 script: make build
 
 deploy:
@@ -14,7 +16,7 @@ deploy:
   github_token: $GITHUB_TOKEN
   keep_history: true
   local_dir: public
-  repo: https://github.com/hpcsc/hpcsc.github.io
+  repo: hpcsc/hpcsc.github.io
   target_branch: master
   fqdn: pnguyen.io
   email: hpcsc@users.noreply.github.com
