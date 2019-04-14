@@ -1,7 +1,7 @@
-baseURL = "https://pnguyen.io"
 languageCode = "en-us"
 title = "David Nguyen's Personal Blog"
 theme = "dream-plus"
+
 
 paginate = 10
 enableRobotsTXT = true
@@ -48,13 +48,12 @@ enableEmoji=true
 
 	#Tags settings
 	[params.tags]
-		enabled = false
+		enabled = true
 
 	#Categories settings
 	[params.categories]
 		enabled = true
 
 [social]
-	email = "hpcsc@users.noreply.github.com"
 	github = "hpcsc"
 	linkedin = "nguyenhungphuong"
