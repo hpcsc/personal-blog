@@ -31,7 +31,7 @@ enableEmoji=true
 		name = "David Nguyen"
 		description = "Just a regular developer who's passionate about crafting high quality software, a martial arts practitioner, a proud dad of two sons."
 		avatar = "https://www.gravatar.com/avatar/624eb530503fe6117f4b4b5ad3acf062"
-		motto = ""
+		motto = "Developer & Karateka"
 
 	[params.features]
 		#Enable Twitter Emoji
