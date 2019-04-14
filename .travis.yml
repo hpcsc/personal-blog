@@ -1,0 +1,24 @@
+language: go
+
+os:
+- linux
+
+go:
+- "1.9.x"
+
+script: make build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  local_dir: public
+  repo: https://github.com/hpcsc/hpcsc.github.io
+  target_branch: master
+  fqdn: pnguyen.io
+  email: hpcsc@users.noreply.github.com
+  name: hpcsc
+  allow_empty_commit: true
+  on:
+    branch: master
