@@ -44,7 +44,7 @@ enableEmoji=true
 		customCSS = ["https://cdn.rawgit.com/UtkarshVerma/hugo-dream-plus/ae11561d/exampleSite/static/css/highlight.css"]
 
 	[params.background]
-		colorBG = true
+		bgColor = "linear-gradient(to bottom, #13547A, #70BEBC)"
 
 	#Tags settings
 	[params.tags]
