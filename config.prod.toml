@@ -1,3 +1,6 @@
 baseURL = "https://pnguyen.io"
 
 googleAnalytics = "UA-125420743-1"
+
+[params]
+	googleAdsenseClient = "ca-pub-5970224932277902"
