@@ -12,6 +12,9 @@ install_hugo:
 restore_theme:
 	git submodule update --recursive
 
+update_theme:
+	git submodule update --remote
+
 build: clean restore_theme
 	hugo --config config.toml,config.prod.toml
 
