@@ -1,3 +1,7 @@
+---
+type: "page"
+---
+
 
 <h1>So, Who Am I?</h1>
 
