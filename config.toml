@@ -8,7 +8,7 @@ enableRobotsTXT = true
 disqusShortname = "pnguyen"
 
 #Skip building these files
-ignoreFiles = ["content/cards/\\.*"]
+ignoreFiles = ["content/cards/\\.*", "content/404.md"]
 
 #Syntax highlighting
 pygmentsCodeFences = true
