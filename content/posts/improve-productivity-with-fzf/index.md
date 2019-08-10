@@ -14,6 +14,23 @@ categories:
 
 As a developer, I spend a lot of time on command line and since I found [fzf](https://github.com/junegunn/fzf), a command line fuzzy finder, I find my productivity has been improved tremendously by applying fzf in everday commands that I use. Below is the collection of small fzf snippets that I wrote and use a lot myself.
 
+## fignore: Download .gitignore
+
+### Usage
+
+![](images/fzf-fignore.gif "fignore demo")
+
+### Source
+
+``` shell
+curl -s https://api.github.com/repos/github/gitignore/git/trees/master?recursive=1 | \
+  jq -r '.tree | .[] | select(.type == "blob" and (.path | endswith(".gitignore"))) | .path' | \
+  fzf --height 30% --reverse --header 'Select .gitignore to download' | \
+  xargs -I{} bash -c 'curl -s https://raw.githubusercontent.com/github/gitignore/master/{} -o .gitignore && echo "Downloaded {} as .gitignore"'
+```
+
+[github/gitignore](https://github.com/github/gitignore) contains a good collection of `.gitignore` template. This script uses github tree api to list all the files ending with .gitignore from that github repository and downloads selected file as `.gitignore` in the current directory.
+
 ## fnpm: Run npm script
 
 ### Usage
