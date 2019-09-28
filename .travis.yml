@@ -22,5 +22,6 @@ deploy:
   email: hpcsc@users.noreply.github.com
   name: hpcsc
   allow_empty_commit: true
+  commit_message: 'Deploy ${TRAVIS_REPO_SLUG}@${TRAVIS_COMMIT}: ${TRAVIS_COMMIT_MESSAGE}'
   on:
     branch: master
