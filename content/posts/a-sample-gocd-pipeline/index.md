@@ -13,13 +13,17 @@ categories:
 - infrastructure
 ---
 
+# Background
+
 As a software developer at ThoughtWorks, I had always wanted to try out GoCD (an open source Continuous Integration and Continuous Delivery system originally developed by ThoughtWorks) but couldn't find a chance until early of this week. My client team is currently using Bamboo from Atlassian as their CI server. Having played with Bamboo for the past one year at the client side, I feel the tool can do the job, but sometimes quite limited (.e.g. in integration among multiple build plans, modelling complicated value stream). My senior suggested me to give the client a Lunch & Learn session on GoCD and how powerful it is compared to Bamboo, and so I spent one whole afternoon setting up a sample pipeline (as code) for the demonstration. I'll go through my setup in this post.
+
+# Local GoCD Setup
 
 First, I created a docker-compose file ([https://github.com/hpcsc/gocd](https://github.com/hpcsc/gocd)) to easily spin up a GoCD server, 3 agents, 1 local Git repository (Gogs) for demonstration purpose.
 
 ![GoCD Setup Local](images/gocd-setup-local.png  "GoCD Setup Local")
 
-Also note that the 3 agents have docker installed and share docker socket with host machine, so any image/container created by the agents will be available in the host machine.
+3 agents are created from GoCD `gocd-agent-docker-dind` image so docker is available within the agents
 
 Before we proceed, we need to clarify a common term that can have different meaning in GoCD, compared to other tools: pipeline. I'll just shamelessly borrow the explaination from [GoCD Getting Started Guide](https://www.gocd.org/getting-started/part-3/):
 
@@ -31,7 +35,30 @@ and
 
 To follow GoCD terminology, I'll call the whole end-to-end flow is Value Stream Map, which contain multiple GoCD pipelines.
 
-And below is overview of the Value Stream Map that I created for demonstration. This Value Stream Map is designed to be as close as possible to the current build pipeline used at my client.
+# Sample Pipelines
+
+## Setup in Local
+
+If you want to try out the following sample pipelines in your local machine, follow these steps:
+
+- Clone and setup GoCD (and Gogs) in your local machine using following repo: [https://github.com/hpcsc/gocd](https://github.com/hpcsc/gocd)
+- Go to [http://localhost:3000](http://localhost:3000) (Gogs server), click Register and create a Gogs user with following credentials:
+
+```
+Username: gogs
+Password: password.123
+```
+- Make sure your local machine have following tools installed:
+    - `jq`
+    - `curl`
+    - default public key at `~/.ssh/id_rsa.pub`
+
+- Clone sample pipelines repository: [https://github.com/hpcsc/sample-pipeline](https://github.com/hpcsc/sample-pipeline) and run script `./scripts/setup.sh`. This script will setup necessary repositories in local Gogs server and create config repositories in GoCD
+- Go to GoCD at [http://localhost:8153](http://localhost:8153), go to Agents tab and enable all 3 agents
+
+## Structure
+
+Below is overview of the Value Stream Map that I created for demonstration. This Value Stream Map is designed to be as close as possible to the current build pipeline used at my client.
 
 ![](images/gocd-sample-pipeline.png  "GoCD Sample Pipeline")
 
@@ -95,6 +122,8 @@ These pipelines are defined in files with extension `.gocd.yaml`. The last part 
 ```
 
 GoCD YAML plugin will watch these repositories and find all files with `.gocd.yaml` extension for pipeline definition.
+
+# Final Thoughts
 
 That's all for the technical part. After playing with GoCD for a while, I find GoCD quite pleasant to use. Its UI and interaction flow are carefully considered to maximize user experience. One example of that is when clicking in a pipeline, I'm presented with a history of that pipeline instances, with stages that it contains and ability to rerun any stage in a single click:
 
