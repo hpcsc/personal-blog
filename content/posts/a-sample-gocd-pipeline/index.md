@@ -42,12 +42,6 @@ To follow GoCD terminology, I'll call the whole end-to-end flow is Value Stream 
 If you want to try out the following sample pipelines in your local machine, follow these steps:
 
 - Clone and setup GoCD (and Gogs) in your local machine using following repo: [https://github.com/hpcsc/gocd](https://github.com/hpcsc/gocd)
-- Go to [http://localhost:3000](http://localhost:3000) (Gogs server), click Register and create a Gogs user with following credentials:
-
-```
-Username: gogs
-Password: password.123
-```
 - Make sure your local machine have following tools installed:
     - `jq`
     - `curl`
