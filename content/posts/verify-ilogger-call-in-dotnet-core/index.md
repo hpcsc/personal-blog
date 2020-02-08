@@ -22,7 +22,7 @@ There are still some exceptional cases when the log message provides some import
 
 To demonstrate the problem, I just modified the weather forecast sample .NET Core Web API project as follow:
 
-```
+``` csharp
 public class WeatherForecastController : ControllerBase
 {
     private readonly ITellDateTime _dateTimeProvider;
@@ -66,7 +66,7 @@ The behavior of `Get()` method is slightly different from the sample provided by
 
 This is the implementation of `InMemoryWeatherClient` if you are interested. This class is not our main concern in this post.
 
-```
+``` csharp
 public class InMemoryWeatherClient : IWeatherClient
 {
     private readonly Random _random;
@@ -87,7 +87,7 @@ public class InMemoryWeatherClient : IWeatherClient
 
 Since the application can fail when getting temperature for any day, we probably want to write a test to make sure that the application logs the specific date when it fails to get the temperature. The test will look something like this when using Moq:
 
-```
+``` csharp
 [Fact]
 public void Get_WithMoq_WhenWeatherClientThrowsException_ShouldLogErrorWithFailedInput()
 {
@@ -118,7 +118,7 @@ public void Get_WithMoq_WhenWeatherClientThrowsException_ShouldLogErrorWithFaile
 
 and some helper methods to stub dependencies:
 
-```
+``` csharp
 private static Mock<ITellDateTime> MockDateTimeProvider(DateTime current)
 {
     var mockDateTimeProvider = new Mock<ITellDateTime>();
@@ -148,7 +148,7 @@ Second problem is that it's difficult to provide correct values to `Verify()` ca
 
 To solve the problem above, I use a handwritten implementation of `ILogger` that keeps log message/error in in-memory for verification:
 
-```
+``` csharp
 public class InMemoryFakeLogger<T> : ILogger<T>
 {
     public LogLevel Level { get; private set; }
@@ -192,7 +192,7 @@ public class InMemoryFakeLogger<T> : ILogger<T>
 
 To use this in-memory logger in tests:
 
-```
+``` csharp
 [Fact]
 public void Get_WhenWeatherClientThrowsException_ShouldLogErrorWithFailedInput()
 {
