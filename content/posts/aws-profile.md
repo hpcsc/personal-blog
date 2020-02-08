@@ -18,7 +18,11 @@ categories:
 <b>TLDR</b>
 
 I created a tool to switch among multiple AWS profiles.
-Installation and usage instruction are at <a href="https://github.com/hpcsc/aws-profile-utils">GitHub repo</a>
+Installation and usage instruction are at <a href="https://github.com/hpcsc/aws-profile">GitHub repo</a>
+</pre>
+
+<pre>
+NOTE: there have been some significant changes to the source code of `aws-profile` tool (you can follow the link above to check the latest source code) so some of the code mentioned below is no longer relevant. I'll update this blog post to reflect the latest change when I have some time
 </pre>
 
 ## Introduction
@@ -55,7 +59,7 @@ So that's how I ended up with writing a CLI program in Golang to manage AWS prof
 
 ## Code Structure
 
-Source code: [https://github.com/hpcsc/aws-profile-utils](https://github.com/hpcsc/aws-profile-utils)
+Source code: [https://github.com/hpcsc/aws-profile](https://github.com/hpcsc/aws-profile)
 
 Example Usage:
 
