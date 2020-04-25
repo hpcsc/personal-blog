@@ -11,7 +11,7 @@ categories:
 - infrastructure
 ---
 
-At my current client, we recently switched from [Kiam](https://github.com/uswitch/kiam) to a recently introduced feature from AWS to associate IAM roles with Kubernetes service accounts: [EKS IAM Roles for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html). Although the switch was pretty straight forward, many things from EKS Roles for Service Accounts seem pretty magic to me, so I dediced to dig a little bit deeper to understand what is going on behind the screen.
+At my current client, we recently switched from [Kiam](https://github.com/uswitch/kiam) to a recently introduced feature from AWS to associate IAM roles with Kubernetes service accounts: [EKS IAM Roles for Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html). Although the switch was pretty straight forward, many things from EKS Roles for Service Accounts seem pretty magic to me, so I decided to dig a little bit deeper to understand what is going on behind the screen.
 
 Disclaimer: a lot of the things described here are from my own research through different sources and may not be exactly how they are implemented. Feel free to drop me a message if I miss out anything.
 
@@ -54,10 +54,10 @@ spec:
     image: container-image:version
 ```
 
-When this pod definition is submitted to Kubernetes, [EKS Pod Identity Webhook](https://github.com/aws/amazon-eks-pod-identity-webhook) intercepts the request before the pod spec is saved into ectd. This webhook is an admission controller and it modifies the pod spec to add in a few things:
+When this pod definition is submitted to Kubernetes, [EKS Pod Identity Webhook](https://github.com/aws/amazon-eks-pod-identity-webhook) intercepts the request before the pod spec is saved into etcd. This webhook is an admission controller and it modifies the pod spec to add in a few things:
 
 - Environment variables:
-  - `AWS-ROLE-ARN`: to be used by AWS SDK later to assume role
+  - `AWS_ROLE_ARN`: to be used by AWS SDK later to assume role
   - `AWS_WEB_IDENTITY_TOKEN_FILE`: location of service account token (identity token) to be saved by kubelet
 - [A service acount token volume projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-token-volume-projection)
   This volume projection is used to project/save service account token to the location mounted by the volume.
