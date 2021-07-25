@@ -27,7 +27,7 @@ The operator that we are going to build is a Github Repository Operator. It allo
 How the series is going to look like:
 
 - Scaffold and first slice of the operator: creation of github repository (this post)
-- Update and delete of github repository (TODO)
+- [Update and delete of github repository]({{< relref "/posts/test-drive-kubernetes-operator-2/index.md" >}})
 - Creating of github repository by cloning another repository (TODO)
 - Validation using webhooks (TODO)
 
@@ -80,7 +80,7 @@ Let's go over some of the most important directories/files in the generated proj
 ![](images/initial-skeleton.png  "Initial skeleton")
 
 - `api/v1/githubrepository_types.go`: contain Go declaration of our custom resource, its spec and status structure. We are going to modify this file next to add additional fields that we need above
-- `controllers/githubrepository_controller.go`: our controller. The most important function here is `Reconcil`, which is called whenever there's any update to the custom resource
+- `controllers/githubrepository_controller.go`: our controller. The most important function here is `Reconcile`, which is called whenever there's any update to the custom resource
 - `config`: this contains a bunch of yaml files for various things. It has a lot of files and it took me a while to understand purpose of each config the first time, so hopefully below explaination makes it easier for you to understand:
 
     - `samples`: example `GithubRepository` resource definition file
@@ -255,9 +255,15 @@ func (r *GithubRepositoryReconciler) Reconcile(ctx context.Context, req ctrl.Req
 	logger := log.FromContext(ctx)
 
 	var resource pnguyeniov1.GithubRepository
-	if err := r.Get(ctx, req.NamespacedName, &resource); err != nil && !errors.IsNotFound(err) {
+	if err := r.Get(ctx, req.NamespacedName, &resource); err != nil {
+		if errors.IsNotFound(err) {
+			// CR might be deleted after reconciliation request is triggered. No need to requeue
+			return ctrl.Result{}, nil
+		}
+
 		return ctrl.Result{}, fmt.Errorf("unable to fetch GithubRepository: %v", err)
 	}
+
 
 	resource.Status.Successful = true
 	if err := r.Status().Update(ctx, &resource); err != nil {
@@ -423,7 +429,8 @@ t.Run("not invoke github api creation when repository exists", func(t *testing.T
 	baseUrl := "http://localhost:8088"
 	uploadUrl := "http://localhost:8088"
 	token := "valid-token"
-	repoName := "existing-repo"
+	repoName := fmt.Sprintf("existing-repo-%d", rand.IntnRange(1000, 9000))
+
 	api := New(context.TODO(), baseUrl, uploadUrl, token)
 
 	err := api.CreateRepository("test-owner", repoName, "some-description")
