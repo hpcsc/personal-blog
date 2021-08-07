@@ -21,7 +21,7 @@ In this post, we are going to build on top of that and add functionalities to up
 
 - [Scaffold and first slice of the operator: creation of github repository]({{< relref "/posts/test-drive-kubernetes-operator-1/index.md" >}})
 - Update and delete of github repository (this post)
-- Creating of github repository by cloning another repository (TODO)
+- [Creating of github repository by cloning another repository]({{< relref "/posts/test-drive-kubernetes-operator-3/index.md" >}})
 - Validation using webhooks (TODO)
 
 # Update function

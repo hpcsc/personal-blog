@@ -28,7 +28,7 @@ How the series is going to look like:
 
 - Scaffold and first slice of the operator: creation of github repository (this post)
 - [Update and delete of github repository]({{< relref "/posts/test-drive-kubernetes-operator-2/index.md" >}})
-- Creating of github repository by cloning another repository (TODO)
+- [Creating of github repository by cloning another repository]({{< relref "/posts/test-drive-kubernetes-operator-3/index.md" >}})
 - Validation using webhooks (TODO)
 
 # Planning
