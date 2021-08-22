@@ -22,7 +22,7 @@ Today we are going to add the function to clone from another repository when cre
 - [Scaffold and first slice of the operator: creation of github repository]({{< relref "/posts/test-drive-kubernetes-operator-1/index.md" >}})
 - [Update and delete of github repository]({{< relref "/posts/test-drive-kubernetes-operator-2/index.md" >}})
 - Creating of github repository by cloning another repository (This post)
-- Validation using webhooks (TODO)
+- [Validation using webhooks]({{< relref "/posts/test-drive-kubernetes-operator-4/index.md" >}})
 
 # End to end test
 
