@@ -57,3 +57,8 @@ enableEmoji=true
 [social]
 	github = "hpcsc"
 	linkedin = "nguyenhungphuong"
+
+[markup]
+	[markup.goldmark]
+		[markup.goldmark.renderer]
+			unsafe = true
