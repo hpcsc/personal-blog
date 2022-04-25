@@ -22,3 +22,6 @@ build: clean restore_theme
 
 start:
 	./bin/hugo --config config.toml,config.dev.toml server
+
+gen_highlight_css:
+	./bin/hugo gen chromastyles --style=dracula | tee ./static/css/highlight.css
