@@ -57,6 +57,7 @@ enableEmoji=true
 [social]
 	github = "hpcsc"
 	linkedin = "nguyenhungphuong"
+	codeproject = "hpcsc"
 
 [markup]
 	[markup.goldmark]
